@@ -8,5 +8,6 @@ namespace FreePro.API.Model
         public string Theme { get; set; }
         public int Invited { get; set; }
         public int Batch { get; set; }
+        public string ImgUrl { get; set; }
     }
 }
