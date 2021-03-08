@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using FreePro.API.Model;
-using FreePro.API.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using FreePro.Repository;
 
 namespace FreePro.API.Controllers
 {
@@ -14,8 +13,8 @@ namespace FreePro.API.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        public readonly DataContext _context;
-        public ValuesController(DataContext context) {
+        public readonly FreeProContext _context;
+        public ValuesController(FreeProContext context) {
             _context = context;
         }
         // GET api/values
@@ -39,7 +38,7 @@ namespace FreePro.API.Controllers
         {
             try
             {             
-                var results = await _context.Meetings.FirstOrDefaultAsync(x => x.MeetingId == id);
+                var results = await _context.Meetings.FirstOrDefaultAsync(x => x.Id == id);
                 return Ok(results);                
             }
             catch (System.Exception)
